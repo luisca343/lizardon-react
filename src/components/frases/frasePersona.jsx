@@ -8,7 +8,6 @@ export function FrasePersona (props) {
   const id = useId()
 
   const fecha = new Date(Date.parse(props.frase.fecha))
-  console.log(fecha)
   const fechaString = `${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()} ${fecha.getHours()}:${fecha.getMinutes()}`
   // Esto lo ordeno luego
   const remote = props.frase.idUsuario % 2 === 0
@@ -104,7 +103,7 @@ export function FrasePersona (props) {
         />
         <text>
           <tspan
-            x={`${remote ? 100 + messageBox.centerWidth : 345 - messageBox.centerWidth} px`}
+            x={`${remote ? 100 + messageBox.centerWidth : 345 - messageBox.centerWidth}px`}
             dy='1.5em'
             fontSize='8px'
             style={{ fill: secondaryColor() }}
@@ -141,7 +140,7 @@ export function FrasePersona (props) {
             <text key={`${id}-${index}`} y={textOffset.y + (textOffset.y / lineHeight * index)} style={{ fontSize: fontSize + 'px' }}>
               <tspan
                 v-for='line of wrappedMessage'
-                x={remote ? messageBox.origin.x + textOffset.x : 500 - messageBox.origin.x - messageBox.centerWidth}
+                x={remote ? messageBox.origin.x : 500 - messageBox.origin.x - messageBox.centerWidth}
                 dy={`${lineHeight}em`}
                 style={{ fill: primaryColor() }}
               >

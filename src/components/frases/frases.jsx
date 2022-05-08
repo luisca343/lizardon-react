@@ -4,14 +4,15 @@ import Axios from 'axios'
 import { FrasePersona } from './frasePersona'
 import './persona.css'
 import dedo from '../../../public/dedo.png'
+import iconoPersona from '../../../public/iconPersona.png'
 
 export default function Frases () {
   const [frases, setFrases] = useState([])
   const id = useId()
+
   useEffect(() => {
     Axios.get('https://api.lizardon.es/lizardon/frases')
       .then(function (res) {
-        console.log(res.data)
         setFrases(res.data)
       })
       .catch(function (error) {
@@ -22,15 +23,17 @@ export default function Frases () {
     <div className='container'>
       <img tabIndex={-1} className='mano' src={dedo} />
       <div className='movil'>
-        <div className='mensajes'>
-          {frases.map(function (frase, index) {
+        <img tabIndex={-1} className='iconoPersona' src={iconoPersona} />
+        <ul className='mensajes'>
+          {frases.reverse().map(function (frase, index) {
             return (
-              <div key={`${id}-${index}`} className='frase'>
+              <li key={`${id}-${index}`} className='frase'>
                 <FrasePersona frase={frase} />
-              </div>
+              </li>
             )
           })}
-        </div>
+          <span className='titulo'>Los mensajes y las llamadas están cifrados de extremo a extremo. Nadie fuera de este chat, ni siquiera Pegasus, puede leerlos ni escucharlos.</span>
+        </ul>
       </div>
     </div>
   )

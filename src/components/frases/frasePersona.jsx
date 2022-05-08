@@ -3,6 +3,8 @@ export function FrasePersona (props) {
   const frase = props.frase.frase
   const imagen = props.frase.imagen
   const lineas = frase.match(/.{1,64}(\s|$)/g)
+  const caracteres = lineas[0].length
+  const ancho = caracteres / 64 * 200
   const id = useId()
 
   const fecha = new Date(Date.parse(props.frase.fecha))
@@ -17,7 +19,7 @@ export function FrasePersona (props) {
     origin: {
       x: remote ? 130 : 60, y: 20
     },
-    centerWidth: 300,
+    centerWidth: 70 + ancho,
     leftWidth: 10,
     rightWidth: 20,
     slantHeight: 5,
@@ -88,17 +90,17 @@ export function FrasePersona (props) {
 
         <polygon
           v-if='remote'
-          points='392,0 467,0 462,22 392,24'
+          points={`${92 + messageBox.centerWidth},0 ${167 + messageBox.centerWidth},0 ${162 + messageBox.centerWidth},22 ${92 + messageBox.centerWidth},24`}
           style={{ fill: secondaryColor() }}
         />
         <polygon
           v-if='remote'
-          points='395,2 465,1 460,20 395,22'
+          points={`${95 + messageBox.centerWidth},2 ${165 + messageBox.centerWidth},1 ${160 + messageBox.centerWidth},20 ${95 + messageBox.centerWidth},22`}
           style={{ fill: primaryColor() }}
         />
         <text>
           <tspan
-            x='400px'
+            x={`${100 + messageBox.centerWidth}px`}
             dy='1.5em'
             fontSize='8px'
             style={{ fill: secondaryColor() }}

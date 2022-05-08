@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'persona';
+    src: url('../../PersonifiedUXRegular.ttf') format("truetype");
+}
+
+html{
+    
+    background-image: url('../../../public/leblanc.jpg');
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.mano{
+    width: 15%;
+    height: auto;
+    position:fixed;
+    bottom: 0;
+    left: 12%;
+    z-index: 1;
+    scroll-behavior:inherit;
+}
+
+div.mensajes{
+    height: 105vh;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+div.mensajes::-webkit-scrollbar {
+    display: none;
+  }
+
+.App{
+    width: 100%;
+    height: 100vh;
+    overflow:hidden;
+}
+
+.mensajes{
+    width: 45%;
+    margin-left:20%;
+    margin-top:1%;
+    transform: rotate(7deg);
+    background-image: url('../../../public/movil.png');
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 5%;
+}
+
+.flipX {
+	transform: scaleX(-1);
+	transform-origin: center;
+}
+
+.frase{
+    width: '85%'!important;
+    margin: 'auto' !important;
+}
+
+@media (orientation: portrait) {
+    .mensajes{
+        background-image: url('../../../public/movil2.png');
+        width:100%;
+        transform: none;
+        padding: 0em;
+        padding-top: 3em;
+        margin:auto
+    }
+
+    .mano{
+        height: 40%;
+        width: auto;
+        position:fixed;
+        bottom: 0;
+        left: -30%;
+        z-index: 1;
+        scroll-behavior:inherit;
+    }
+  }

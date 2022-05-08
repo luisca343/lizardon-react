@@ -3,11 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --host"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "nstall": "0.2.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

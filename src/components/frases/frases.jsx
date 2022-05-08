@@ -28,7 +28,7 @@ export default function Frases () {
           {frases.reverse().map(function (frase, index) {
             return (
               <li key={`${id}-${index}`} className='frase'>
-                <FrasePersona frase={frase} />
+                <FrasePersona frase={frase} index={(frases.length - index)} />
               </li>
             )
           })}

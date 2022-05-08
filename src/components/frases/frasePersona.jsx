@@ -6,9 +6,10 @@ export function FrasePersona (props) {
   const caracteres = lineas[0].length
   const ancho = caracteres / 64 * 200
   const id = useId()
+  const anchoNumero = props.index < 99 ? 0 : 7
 
   const fecha = new Date(Date.parse(props.frase.fecha))
-  const fechaString = `${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()} ${fecha.getHours()}:${fecha.getMinutes()}`
+  const fechaString = `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()} ${fecha.getHours()}:${fecha.getMinutes()}`
   // Esto lo ordeno luego
   const remote = props.frase.idUsuario % 2 === 0
   const fontSize = 10
@@ -114,6 +115,31 @@ export function FrasePersona (props) {
 
         <polygon
           v-if='remote'
+          points={`120,2 ${145 + anchoNumero},1 ${155 + anchoNumero},22 130,25`}
+          style={{ fill: primaryColor() }}
+          className={remote ? '' : 'flipX'}
+        />
+
+        <polygon
+          v-if='remote'
+          points={`122,4 ${143 + anchoNumero},3 ${152 + anchoNumero},20 132,23`}
+          style={{ fill: secondaryColor() }}
+          className={remote ? '' : 'flipX'}
+        />
+
+        <text>
+          <tspan
+            x={`${remote ? 130 : 357 - anchoNumero}px`}
+            dy='1.6em'
+            fontSize='9px'
+            style={{ fill: primaryColor() }}
+            className={remote ? '' : 'flipX'}
+          >#{props.index}
+          </tspan>
+        </text>
+
+        <polygon
+          v-if='remote'
           points='50,100 120,100 110,55 55,55'
           style={{ fill: primaryColor() }}
           className={remote ? '' : 'flipX'}
@@ -125,7 +151,6 @@ export function FrasePersona (props) {
           style={{ fill: secondaryColor() }}
           className={remote ? '' : 'flipX'}
         />
-
         <text>
           <tspan
             x={remote ? 60 : 395}

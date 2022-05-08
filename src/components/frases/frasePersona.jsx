@@ -10,14 +10,13 @@ export function FrasePersona (props) {
   const fecha = new Date(Date.parse(props.frase.fecha))
   console.log(fecha)
   const fechaString = `${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()} ${fecha.getHours()}:${fecha.getMinutes()}`
-
   // Esto lo ordeno luego
-  const remote = true
+  const remote = props.frase.idUsuario % 2 === 0
   const fontSize = 10
   const lineHeight = 1.5
   const messageBox = {
     origin: {
-      x: remote ? 130 : 60, y: 20
+      x: remote ? 130 : 130, y: 20
     },
     centerWidth: 70 + ancho,
     leftWidth: 10,
@@ -40,17 +39,20 @@ export function FrasePersona (props) {
         <text
           visibility='hidden'
           style={{ fontSize: 10 + 'px' }}
+          className={remote ? '' : 'flipX'}
         >
           Este texto es para hacer cosas chungas, no existe, no os preocupéis
         </text>
         <polygon
           points='25,5 97,10 105,60 40,68'
           style={{ fill: 'black' }}
+          className={remote ? '' : 'flipX'}
         />
         <polygon
           v-if='remote'
           points='30,8 95,12 101,58 42,65'
           style={{ fill: 'white' }}
+          className={remote ? '' : 'flipX'}
         />
         <clipPath id={`avatarClipPath-${id}`}>
           {props.frase.transparente === 1
@@ -58,8 +60,8 @@ export function FrasePersona (props) {
             : <polygon points='30,8 95,12 101,58 42,65' />}
         </clipPath>
         {props.frase.transparente === 1
-          ? <image clipPath={`url(#avatarClipPath-${id})`} x='30' y='-5' width='80px' xlinkHref={imagen} />
-          : <image clipPath={`url(#avatarClipPath-${id})`} x='26' y='-8' width='80px' xlinkHref={imagen} />}
+          ? <image clipPath={`url(#avatarClipPath-${id})`} x='30' y='-5' width='80px' xlinkHref={imagen} className={remote ? '' : 'flipX'} />
+          : <image clipPath={`url(#avatarClipPath-${id})`} x='26' y='-8' width='80px' xlinkHref={imagen} className={remote ? '' : 'flipX'} />}
         <polygon
           v-if='remote'
           points={containerBorderPoints()}
@@ -92,18 +94,21 @@ export function FrasePersona (props) {
           v-if='remote'
           points={`${92 + messageBox.centerWidth},0 ${167 + messageBox.centerWidth},0 ${162 + messageBox.centerWidth},22 ${92 + messageBox.centerWidth},24`}
           style={{ fill: secondaryColor() }}
+          className={remote ? '' : 'flipX'}
         />
         <polygon
           v-if='remote'
           points={`${95 + messageBox.centerWidth},2 ${165 + messageBox.centerWidth},1 ${160 + messageBox.centerWidth},20 ${95 + messageBox.centerWidth},22`}
           style={{ fill: primaryColor() }}
+          className={remote ? '' : 'flipX'}
         />
         <text>
           <tspan
-            x={`${100 + messageBox.centerWidth}px`}
+            x={`${remote ? 100 + messageBox.centerWidth : 345 - messageBox.centerWidth} px`}
             dy='1.5em'
             fontSize='8px'
             style={{ fill: secondaryColor() }}
+            className={remote ? '' : 'flipX'}
           >{fechaString}
           </tspan>
         </text>
@@ -112,17 +117,19 @@ export function FrasePersona (props) {
           v-if='remote'
           points='50,100 120,100 110,55 55,55'
           style={{ fill: primaryColor() }}
+          className={remote ? '' : 'flipX'}
         />
 
         <polygon
           v-if='remote'
           points='55,68 110,68 108,56 56,56'
           style={{ fill: secondaryColor() }}
+          className={remote ? '' : 'flipX'}
         />
 
         <text>
           <tspan
-            x='60px'
+            x={remote ? 60 : 395}
             dy='65px'
             fontSize='8px'
             style={{ fill: primaryColor() }}

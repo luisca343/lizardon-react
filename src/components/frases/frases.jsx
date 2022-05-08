@@ -11,6 +11,7 @@ export default function Frases () {
   useEffect(() => {
     Axios.get('https://api.lizardon.es/lizardon/frases')
       .then(function (res) {
+        console.log(res.data)
         setFrases(res.data)
       })
       .catch(function (error) {
@@ -20,14 +21,16 @@ export default function Frases () {
   return (
     <div className='container'>
       <img tabIndex={-1} className='mano' src={dedo} />
-      <div className='mensajes'>
-        {frases.map(function (frase, index) {
-          return (
-            <div key={`${id}-${index}`} className='frase'>
-              <FrasePersona frase={frase} />
-            </div>
-          )
-        })}
+      <div className='movil'>
+        <div className='mensajes'>
+          {frases.map(function (frase, index) {
+            return (
+              <div key={`${id}-${index}`} className='frase'>
+                <FrasePersona frase={frase} />
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )

@@ -22,33 +22,23 @@ html{
     scroll-behavior:inherit;
 }
 
-div.mensajes{
-    height: 105vh;
-    overflow: auto;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-
-div.mensajes::-webkit-scrollbar {
-    display: none;
-  }
-
 .App{
     width: 100%;
     height: 100vh;
     overflow:hidden;
 }
 
-.mensajes{
+.movil{
     width: 45%;
     margin-left:20%;
     margin-top:1%;
-    transform: rotate(7deg);
+    transform: rotate(6deg);
     background-image: url('../../../public/movil.png');
     background-position: right;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     padding: 5%;
+    border: 1px solid red;
 }
 
 .flipX {
@@ -61,8 +51,21 @@ div.mensajes::-webkit-scrollbar {
     margin: 'auto' !important;
 }
 
+div.mensajes{
+    margin-top: -5%;
+    height: 95vh;
+    overflow: auto;
+    padding-right:1em;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+div.mensajes::-webkit-scrollbar {
+    display: none;
+}
+
 @media (orientation: portrait) {
-    .mensajes{
+    .movil{
         background-image: url('../../../public/movil2.png');
         width:100%;
         transform: none;
@@ -79,5 +82,10 @@ div.mensajes::-webkit-scrollbar {
         left: -30%;
         z-index: 1;
         scroll-behavior:inherit;
+    }
+
+    div.mensajes{
+        margin-top: 1%;
+        height: 100vh;
     }
   }

@@ -7,7 +7,7 @@ export function FrasePersona (props) {
 
   const fecha = new Date(Date.parse(props.frase.fecha))
   console.log(fecha)
-  const fechaString = `${fecha.getUTCDate()}/${fecha.getMonth()}/${fecha.getFullYear()} ${fecha.getHours()}:${fecha.getMinutes()}`
+  const fechaString = `${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()} ${fecha.getHours()}:${fecha.getMinutes()}`
 
   // Esto lo ordeno luego
   const remote = true

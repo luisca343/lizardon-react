@@ -1,11 +1,14 @@
 @font-face {
     font-family: 'persona';
-    src: url('../../PersonifiedUXRegular.ttf') format("truetype");
+    src: url('/Persona.ttf') format("truetype");
+}
+
+*{
+    font-family: 'persona';
 }
 
 html{
-    
-    background-image: url('../../../public/leblanc.jpg');
+    background-image: url('/leblanc.jpg');
     background-position: right;
     background-repeat: no-repeat;
     background-size: cover;
@@ -57,10 +60,9 @@ html{
 }
 
 .frase, .titulo{
-    width: '85%'!important;
-    margin: 'auto' !important;
     list-style-type: none;
 }
+
 .titulo{
     margin:auto;
     margin-top: 1em;
@@ -69,23 +71,35 @@ html{
 }
 
 .mensajes{
-    margin-top: 5%;
-    margin-bottom: 5%;
-    height: 85vh;
+    transform: rotate(1.5deg);
+    height: 100vh;
     overflow: auto;
-    padding-right:1em;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
     display: flex;
     flex-direction: column-reverse;
-    width: 100%;
-    margin-left: -8%;
+    width: 95%;
+    margin-top: -3.9%;
+    margin-left: -6%;
 }
 
 .mensajes::-webkit-scrollbar {
     display: none;
 }
 
+.bordeAbajo{
+    padding-top:5%;
+}
+
+.barraTexto{
+    width: 85%;
+    line-height: 50px;
+    background-color: #ce8383;
+    border: 2px solid #300404;
+    border-radius: 1em;
+    padding-left: 5%;
+    margin-left: 4%;
+}
 
 
 @media (orientation: portrait) {
@@ -100,7 +114,7 @@ html{
     }
 
     .movil{
-        background-image: url('../../../public/movil2.png');
+        background-image: url('/public/movil2.png');
         width:100%;
         transform: none;
         padding: 0em;
@@ -119,8 +133,19 @@ html{
     }
 
     .mensajes{
-        margin-top: 1%;
-        height: 95vh;
-        margin-left: -5%;
+        margin-top: -4%;
+        height: 93vh;
+        margin-left: -6%;
+        padding-bottom: 5%;
     }
+
+    .bordeAbajo{
+        padding-top:5%;
+        display: none;
+    }
+
+  .barraTexto{
+    
   }
+  
+}

@@ -162,7 +162,7 @@ export function FrasePersona (props) {
         </text>
         {lineas.map(function (linea, index) {
           return (
-            <text key={`${id}-${index}`} y={textOffset.y + (textOffset.y / lineHeight * index)} style={{ fontSize: fontSize + 'px' }}>
+            <text key={`${id}-${index}`} y={textOffset.y + (textOffset.y / lineHeight * index)} style={{ fontSize: '9.5px' }}>
               <tspan
                 v-for='line of wrappedMessage'
                 x={remote ? messageBox.origin.x : 500 - messageBox.origin.x - messageBox.centerWidth}

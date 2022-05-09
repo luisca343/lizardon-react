@@ -48,6 +48,7 @@ html{
     background-repeat: no-repeat;
     background-size: 100% 100%;
     padding: 5%;
+    
 }
 
 .flipX {
@@ -61,8 +62,10 @@ html{
     list-style-type: none;
 }
 .titulo{
+    margin:auto;
     margin-top: 1em;
     margin-bottom: 1em;
+    width: 80%;
 }
 
 .mensajes{
@@ -75,7 +78,8 @@ html{
     scrollbar-width: none;  /* Firefox */
     display: flex;
     flex-direction: column-reverse;
-    width: 87%;
+    width: 100%;
+    margin-left: -8%;
 }
 
 .mensajes::-webkit-scrollbar {
@@ -117,6 +121,6 @@ html{
     .mensajes{
         margin-top: 1%;
         height: 95vh;
-        width: 80%;
+        margin-left: -5%;
     }
   }

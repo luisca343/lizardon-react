@@ -140,7 +140,7 @@ export function FrasePersona (props) {
 
         <polygon
           v-if='remote'
-          points='50,100 120,100 110,55 55,55'
+          points='50,70 114,70 110,53 55,54'
           style={{ fill: primaryColor() }}
           className={remote ? '' : 'flipX'}
         />

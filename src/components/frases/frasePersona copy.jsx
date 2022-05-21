@@ -1,46 +1,25 @@
 import { useId } from 'react'
 export function FrasePersona (props) {
-  const datos = props.datos
-  const frase = datos.mensaje
-  const imagen = datos.imagen
-  const nombre = datos.nombre
-  const transparente = datos.transparente
-  const fontSize = props.fontSize || 13
-  const maxCaracteres = parseInt(6400 / (fontSize * fontSize))
-  const lineas = frase.match(new RegExp('.{1,' + maxCaracteres + '}(\\s|$)', 'g'))
+  const frase = props.frase.frase
+  const imagen = props.frase.imagen
+  const lineas = frase.match(/.{1,64}(\s|$)/g)
   const caracteres = lineas[0].length
-  const caracteresNombre = nombre.length
   const ancho = caracteres / 64 * 200
-  const anchoNombre = caracteresNombre / 32 * 200
   const id = useId()
-  let anchoNumero
-  if (props.anchoNumero) {
-    anchoNumero = props.index < 99 ? 0 : 7
-  } else {
-    anchoNumero = 0
-  }
-  const fecha = new Date(datos.fecha)
-  fecha.setHours(fecha.getHours() - 2)// Por algún motivo la fecha sale mal, solución preventiva
+  const anchoNumero = props.index < 99 ? 0 : 7
+  const transparente = props.frase.transparente
 
-  let fechaString
-  if (fecha.getDate()) {
-    fechaString = `${fecha.getDate()}/${('0' + (fecha.getMonth() + 1)).slice(-2)}/${fecha.getFullYear()} ${('0' + (fecha.getHours())).slice(-2)}:${('0' + (fecha.getMinutes())).slice(-2)}`
-    if (!transparente) {
-      fechaString = `${('0' + (fecha.getHours())).slice(-2)}:${('0' + (fecha.getMinutes())).slice(-2)}`
-    }
-  } else {
-    fechaString = datos.fecha
-  }
-
+  const fecha = new Date(Date.parse(props.frase.fecha))
+  const fechaString = `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()} ${fecha.getHours()}:${fecha.getMinutes()}`
   // Esto lo ordeno luego
-  const remote = datos.idUsuario % 2 === 0
+  const remote = props.frase.idUsuario % 2 === 0
+  const fontSize = 10
   const lineHeight = 1.5
-
   const messageBox = {
     origin: {
       x: remote ? 130 : 130, y: 20
     },
-    centerWidth: fontSize * fontSize - 2 * fontSize + ancho,
+    centerWidth: 70 + ancho,
     leftWidth: 10,
     rightWidth: 20,
     slantHeight: 5,
@@ -88,65 +67,65 @@ export function FrasePersona (props) {
           v-if='remote'
           points={containerBorderPoints()}
           style={{ fill: primaryColor() }}
-          className={remote ? '' : 'flipX'}
+          className={!remote && transparente ? 'flipX' : ''}
         />
 
         <polygon
           v-if='remote'
           points={containerTailBorderPoints()}
           style={{ fill: primaryColor() }}
-          className={remote ? '' : 'flipX'}
+          className={!remote && transparente ? 'flipX' : ''}
         />
 
         <polygon
           v-if='remote'
           points={containerTailPoints()}
           style={{ fill: secondaryColor() }}
-          className={remote ? '' : 'flipX'}
+          className={!remote && transparente ? 'flipX' : ''}
         />
 
         <polygon
           v-if='remote'
           points={containerPoints()}
           style={{ fill: secondaryColor() }}
-          className={remote ? '' : 'flipX'}
+          className={!remote && transparente ? 'flipX' : ''}
         />
 
         <polygon
           v-if='remote'
-          points={`${92 + messageBox.centerWidth},0 ${177 + messageBox.centerWidth},0 ${172 + messageBox.centerWidth},22 ${92 + messageBox.centerWidth},24`}
+          points={`${92 + messageBox.centerWidth},0 ${167 + messageBox.centerWidth},0 ${162 + messageBox.centerWidth},22 ${92 + messageBox.centerWidth},24`}
           style={{ fill: secondaryColor() }}
-          className={remote ? '' : 'flipX'}
+          className={!remote && transparente ? 'flipX' : ''}
         />
         <polygon
           v-if='remote'
-          points={`${95 + messageBox.centerWidth},2 ${175 + messageBox.centerWidth},1 ${170 + messageBox.centerWidth},20 ${95 + messageBox.centerWidth},22`}
+          points={`${95 + messageBox.centerWidth},2 ${165 + messageBox.centerWidth},1 ${160 + messageBox.centerWidth},20 ${95 + messageBox.centerWidth},22`}
           style={{ fill: primaryColor() }}
-          className={remote ? '' : 'flipX'}
+          className={!remote && transparente ? 'flipX' : ''}
         />
         <text>
           <tspan
-            x={`${remote ? 100 + messageBox.centerWidth : 335 - messageBox.centerWidth}px`}
-            dy='1.3em'
-            fontSize={transparente ? '8px' : '12px'}
+            x={`${remote ? 100 + messageBox.centerWidth : 345 - messageBox.centerWidth}px`}
+            dy='1.5em'
+            fontSize='8px'
             style={{ fill: secondaryColor() }}
-            className={remote ? '' : 'flipX'}
+            className={!remote && transparente ? 'flipX' : ''}
           >{fechaString}
           </tspan>
         </text>
 
         <polygon
           v-if='remote'
-          points={`115,2 ${145 + anchoNumero},1 ${155 + anchoNumero},22 125,25`}
+          points={`120,2 ${145 + anchoNumero},1 ${155 + anchoNumero},22 130,25`}
           style={{ fill: primaryColor() }}
-          className={remote ? '' : 'flipX'}
+          className={!remote && transparente ? 'flipX' : ''}
         />
 
         <polygon
           v-if='remote'
-          points={`117,4 ${143 + anchoNumero},3 ${152 + anchoNumero},20 127,23`}
+          points={`122,4 ${143 + anchoNumero},3 ${152 + anchoNumero},20 132,23`}
           style={{ fill: secondaryColor() }}
-          className={remote ? '' : 'flipX'}
+          className={!remote && transparente ? 'flipX' : ''}
         />
 
         <text>
@@ -155,38 +134,39 @@ export function FrasePersona (props) {
             dy='1.6em'
             fontSize='9px'
             style={{ fill: primaryColor() }}
-            className={remote ? '' : 'flipX'}
+            className={!remote && transparente ? 'flipX' : ''}
           >#{props.index}
           </tspan>
         </text>
+
         <polygon
           v-if='remote'
-          points={`25,70 ${52 + anchoNombre},70 ${55 + anchoNombre},53 35,54`}
+          points='50,70 114,70 110,53 55,54'
           style={{ fill: primaryColor() }}
-          className={remote ? '' : 'flipX'}
+          className={!remote && transparente ? 'flipX' : ''}
         />
 
         <polygon
           v-if='remote'
-          points={`30,68 ${50 + anchoNombre},68 ${50 + anchoNombre},56 36,56`}
+          points='55,68 110,68 108,56 56,56'
           style={{ fill: secondaryColor() }}
-          className={remote ? '' : 'flipX'}
+          className={!remote && transparente ? 'flipX' : ''}
         />
         <text>
           <tspan
-            x={remote ? 40 : 462 - anchoNombre}
+            x={remote ? 60 : 395}
             dy='65px'
-            fontSize='12px'
+            fontSize='8px'
             style={{ fill: primaryColor() }}
-          >{nombre}
+          >{props.frase.nombre}
           </tspan>
         </text>
         {lineas.map(function (linea, index) {
           return (
-            <text key={`${id}-${index}`} y={textOffset.y + (textOffset.y / lineHeight * index)} style={{ fontSize: `${fontSize}px` }}>
+            <text key={`${id}-${index}`} y={textOffset.y + (textOffset.y / lineHeight * index)} style={{ fontSize: '9.5px' }}>
               <tspan
                 v-for='line of wrappedMessage'
-                x={remote ? messageBox.origin.x + 10 : 500 - messageBox.origin.x - messageBox.centerWidth}
+                x={remote ? messageBox.origin.x : 500 - messageBox.origin.x - messageBox.centerWidth}
                 dy={`${lineHeight}em`}
                 style={{ fill: primaryColor() }}
               >
@@ -318,7 +298,6 @@ export function FrasePersona (props) {
   function primaryColor () {
     return remote ? 'white' : 'black'
   }
-
   function secondaryColor () {
     return remote ? 'black' : 'white'
   }

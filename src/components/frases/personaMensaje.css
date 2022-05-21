@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'persona';
+    src: url('/Persona.ttf') format("truetype");
+}
+
+*{
+    font-family: 'persona';
+}
+
+html{
+    background-color: '#FF0505'!important;
+}
+
+.App{
+    width: 100%;
+    height: 100vh;
+    overflow:hidden;
+}
+
+
+.flipX {
+	transform: scaleX(-1);
+	transform-origin: center;
+}
+
+
+.mensajes{
+    width: 700px;
+    height: 1000px;
+    margin-left: -2em;
+    margin-right: -2em;
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.mensajes::-webkit-scrollbar {
+    display: none;
+}

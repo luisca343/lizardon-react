@@ -1,5 +1,42 @@
 .contenedorOverlay{
   width: 1920px;
   height: 1080px;
-  color:red
+}
+
+.encuesta{
+  height: 300px;
+  width: 500px;
+  position: absolute;
+  bottom:0;
+  right: 0;
+  background-color: rgba(75, 78, 80, 0.1);
+
+  border-radius: 1em;
+  border: 1px solid blue;
+}
+
+.hidden{
+  display:none
+}
+
+
+.opcionesEncuesta{
+  
+  height: 250px;
+}
+
+#alerta{
+  margin: auto;
+  margin-top: 2em;
+}
+
+.imgAlerta{
+  width: 250px;
+}
+
+.textoAlerta{
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  -webkit-text-stroke: 1px black;
 }

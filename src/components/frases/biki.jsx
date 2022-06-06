@@ -1,30 +1,20 @@
 /* eslint-disable import/no-absolute-path */
 
 import { useEffect, useState, useId } from 'react'
-import { useParams } from 'react-router-dom'
 import Axios from 'axios'
 import { FrasePersona } from './frasePersona'
 import './persona.css'
 import dedo from '../../../public/dedo.png'
 import iconoPersona from '/iconPersona.png'
 import { MensajePersona } from '../../objects/MensajePersona'
-import { config } from '../../constants'
 
-export default function Frases () {
+export default function Biki () {
   const [frases, setFrases] = useState([])
   const id = useId()
-  const { nombre } = useParams()
-  if (nombre) {
-    console.log(nombre)
-  }
   let fechaAnterior = null
 
   useEffect(() => {
-    let url = 'https://api.lizardon.es/lizardon/frases'
-    if (nombre) {
-      url += `/${nombre}`
-    }
-    Axios.get(url)
+    Axios.get('https://api.lizardon.es/lizardon/biki')
       .then(function (res) {
         const data = res.data
         const frases = []
@@ -56,6 +46,9 @@ export default function Frases () {
             fechaAnterior = fecha
             let nuevaFecha
             if (fechAnt && (fecha.getDate() < fechAnt.getDate() || fecha.getMonth() < fechAnt.getMonth())) {
+              console.log(frase.mensaje)
+              console.log(`${fecha.getDate()} < ${fechAnt.getDate()}`)
+              console.log()
               nuevaFecha = true
             }
 

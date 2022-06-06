@@ -12,7 +12,7 @@ export default function ChatPersona () {
   const params = useParams()
   const [mensajes, setMensajes] = useState([])
   useEffect(() => {
-    const socket = io('http://ws.lizardon.es')
+    const socket = io('http://localhost:34304')
     socket.emit('join', params.id)
     socket.on('mensajeTwitch', (params) => {
       const datos = JSON.parse(params)
@@ -24,7 +24,7 @@ export default function ChatPersona () {
   }, [])
   return (
     <div className='container'>
-      <div className='mensajes'>
+      <div className='mensajes' id='mensajes'>
         {mensajes.slice(0).reverse().map(function (mensaje, index) {
           return (
             <FrasePersona key={`${key}-${index}`} datos={mensaje} index={(mensajes.length - index)} style={{ width: '100%' }} />

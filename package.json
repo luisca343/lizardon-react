@@ -12,9 +12,10 @@
     "nstall": "0.2.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-dotenv": "^0.1.3",
     "react-router-dom": "6.3.0",
-    "socket.io-client": "^4.5.0"
+    "react-transition-group": "^4.4.2",
+    "socket.io-client": "^4.5.0",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

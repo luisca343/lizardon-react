@@ -20,7 +20,9 @@ export function FrasePersona (props) {
     anchoNumero = 0
   }
   const fecha = new Date(datos.fecha)
-  fecha.setHours(fecha.getHours() - 2)// Por algún motivo la fecha sale mal, solución preventiva
+  if (transparente) {
+    // fecha.setHours(fecha.getHours() - 2)// Por algún motivo la fecha sale mal, solución preventiva
+  }
 
   let fechaString
   if (fecha.getDate()) {
@@ -56,7 +58,7 @@ export function FrasePersona (props) {
     y: messageBox.origin.y + fontSize * lineHeight / 4
   }
   return (
-    <div>
+    <div className={`frasePersona ${transparente ? '' : 'nuevaFrase'}`}>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox={`0 0 500 ${viewBoxHeight()}`} style={{}}>
         <text
           visibility='hidden'
@@ -151,7 +153,7 @@ export function FrasePersona (props) {
 
         <text>
           <tspan
-            x={`${remote ? 130 : 357 - anchoNumero}px`}
+            x={`${remote ? 125 : 357 - anchoNumero}px`}
             dy='1.6em'
             fontSize='9px'
             style={{ fill: primaryColor() }}
@@ -173,13 +175,15 @@ export function FrasePersona (props) {
           className={remote ? '' : 'flipX'}
         />
         <text>
-          <tspan
-            x={remote ? 40 : 462 - anchoNombre}
-            dy='65px'
-            fontSize='12px'
-            style={{ fill: primaryColor() }}
-          >{nombre}
-          </tspan>
+          <a href={`https://lizardon.es/frases/${nombre}`}>
+            <tspan
+              x={remote ? 40 : 462 - anchoNombre}
+              dy='65px'
+              fontSize='12px'
+              style={{ fill: primaryColor() }}
+            >{nombre}
+            </tspan>
+          </a>
         </text>
         {lineas.map(function (linea, index) {
           return (
@@ -311,7 +315,7 @@ export function FrasePersona (props) {
   }
 
   function containerHeight () {
-    const height = fontSize * lineHeight * lineas.length
+    const height = fontSize * lineHeight * lineas.length * 0.85
     return parseInt(height + fontSize * lineHeight)
   }
 
